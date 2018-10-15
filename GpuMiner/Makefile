@@ -1,6 +1,9 @@
+TOP=$(shell readlink -f "$(dir $(lastword $(MAKEFILE_LIST)))")
+
 CC = g++ -O
 CPPFLAGS = -std=c++11 -I. -I/opt/AMDAPPSDK-3.0/include/
 LDFLAGS = -L/opt/AMDAPPSDK-3.0/lib/x86_64/sdk
+
 
 SRCS =                                  \
 	Core/CommonData.cpp                 \
@@ -41,3 +44,16 @@ xdag-gpu: main.o $(OBJS)
 	$(CC) -o xdag-gpu $(LDFLAGS) main.o $(OBJS) -lOpenCL -lpthread -lboost_system
 
 all: xdag-gpu
+
+.PHONY: clean
+clean:
+	rm -f $(TOP)/*.o
+	rm -f $(TOP)/Core/*.o
+	rm -f $(TOP)/Hash/*.o
+	rm -f $(TOP)/MinerEngine/*.o
+	rm -f $(TOP)/Utils/*.o
+	rm -f $(TOP)/XDagCore/*.o
+	rm -f $(TOP)/XDagCore/dar/*.o
+	rm -f $(TOP)/XDagCore/dfstool/*.o
+	rm -f $(TOP)/xdag-gpu
+
