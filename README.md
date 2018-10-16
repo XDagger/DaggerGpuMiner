@@ -56,6 +56,14 @@ Check dependencies: libboost-dev, libboost-system-dev, openssl.
 
 Download this source code, then cd to source folder. In GpuMiner folder run command $make all, it will generate xdag-gpu.  
 
+note: for nvidia graphic card. may need more 2 steps:
+    
+    1) copy opencl header file to project. For example 
+        sudo cp -r /usr/local/cuda-10.0/targets/x86_64-linux/include/CL  ~/GpuMiner/CL
+    
+    2) install cuda-toolkit
+        sudo apt-get install nvidia-cuda-toolkit
+
 ### Launch parameters:
 
 	1) GPU benchmark: ./xdag-gpu -G -M
